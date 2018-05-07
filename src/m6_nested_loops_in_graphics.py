@@ -80,10 +80,41 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # TO: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
+    original_x = circle.center.x
+    original_y = circle.center.y
+    radius = circle.radius
+
+    x = original_x
+    y = original_y
+
+    for k in range(r):
+        for k in range(3):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = circle.fill_color
+            new_circle.attach_to(window)
+            window.render()
+
+            x = x + 2 * radius
+
+        y = y + 2 * radius
+        x = original_x
+
+    new_y = original_y + 2 * r * radius
+
+    for j in range(3):
+        for n in range(c + 3):
+            new_circle = rg.Circle(rg.Point(x, new_y), radius)
+            new_circle.fill_color = circle.fill_color
+            new_circle.attach_to(window)
+            window.render()
+
+            x = x + 2 * radius
+        new_y = new_y + 2 * radius
+        x = original_x
 
 def run_test_draw_wall_on_right():
     """ Tests the    draw_wall_on_right    function. """
@@ -125,6 +156,24 @@ def draw_wall_on_right(rectangle, n, window):
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
+    width = rectangle.get_width()
+    height = rectangle.get_height()
+    original_x = rectangle.corner_1.x
+    original_y = rectangle.corner_1.y
+    x = original_x
+    y = original_y
+
+    for k in range(n):
+        for j in range(k + 1):
+            new_rect = rg.Rectangle(rg.Point(x, y), rg.Point(x + width, y + height))
+            new_rect.fill_color = rectangle.fill_color
+            new_rect.attach_to(window)
+            window.render()
+
+            x = x - width
+
+        x = original_x
+        y = y + height
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
